@@ -30,21 +30,20 @@ const headerVariants = {
 
 const headersData = [
   {
-    label: "Home",
-    href: "/",
-  },
-  {
+    id:0,
     label: "Products",
     href: "/mentors",
   },
   {
+    id:1,
     label: "About",
-    href: "/account",
+    href: "/about",
   },
   {
+    id:2,
     label: "Log In/Out",
-    href: "/logout",
-  },
+    href: "/log",
+  }
 ];
 
 const newStyles = makeStyles(() => ({
@@ -77,14 +76,16 @@ export const Header = () => {
     >
         <AppBar className={header}>
             <Toolbar className={toolbar}>
-            <Typography>HEADER</Typography>
+            <Link to="/">
+                <Typography>HEADER</Typography>
+            </Link>
 
             <div className={menuButton}>
-                {headersData.map(({ label, href }) => {
+                {headersData.map(({ id,label, href }) => {
                 return (
                     <Button
                     {...{
-                        key: label,
+                        key: id,
                         color: "inherit",
                         to: href,
                         component: Link,

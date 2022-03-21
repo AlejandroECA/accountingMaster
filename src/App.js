@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import React from 'react'
 import { 
-  BrowserRouter, 
   Routes, 
   Route,
+  useLocation
 } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion";
 
@@ -20,19 +20,19 @@ import { Header} from './components/headerComponent'
 
 function App() {
 
+  const location = useLocation()
   return (
-    <BrowserRouter >
-      <AnimatePresence exitBeforeEnter initial={true}>
+      <AnimatePresence >
         <GlobalStyle 
           backgroundImage={back} 
           fontColor={'gray'}
           />
-        <Header />
-        <Routes >
-          <Route path='/' element = {<Home />} />
-        </Routes>
+          <Header key='header' />
+          <Routes location={location} key={location.pathname}>
+            <Route path='/' element = {<Home />} />
+            <Route path='/mentors' element = {<div> mentors </div> } />
+          </Routes>
       </AnimatePresence>
-    </BrowserRouter>
   );
 }
 
