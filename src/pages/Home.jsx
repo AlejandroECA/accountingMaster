@@ -1,7 +1,7 @@
 import React from 'react'
 
 //components
-import {Intro} from '../components/homeIntroComponent'
+import {Intro} from '../components/home/homeIntroComponent'
 
 export const Home = () => {
     return(

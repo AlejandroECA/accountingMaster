@@ -31,13 +31,13 @@ const headerVariants = {
 const headersData = [
   {
     id:0,
-    label: "Products",
-    href: "/mentors",
+    label: "About",
+    href: "/about",
   },
   {
     id:1,
-    label: "About",
-    href: "/about",
+    label: "Services",
+    href: "/services",
   },
   {
     id:2,
@@ -73,6 +73,7 @@ export const Header = () => {
       animate="animate"
       initial="initial"
       transition="transition"
+      style={{paddingTop:'20px', paddingLeft:'20px'}}
     >
         <AppBar className={header}>
             <Toolbar className={toolbar}>
