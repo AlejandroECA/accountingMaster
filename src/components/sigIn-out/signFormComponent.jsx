@@ -43,7 +43,9 @@ const logFormVariant = {
 }
 
 
-export const SignForm = ({isSignUp,title}) => {
+export const SignForm = ({title}) => {
+
+    const [isSignUp,setIsSignUp] = useState(false)
 
     const [userInfo,setUserInfo] = useState({
         name:'',
@@ -65,9 +67,10 @@ export const SignForm = ({isSignUp,title}) => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
+        setIsSignUp(false)
         console.log(userInfo);
 
-        
+
     }
   
 
@@ -79,8 +82,9 @@ export const SignForm = ({isSignUp,title}) => {
             exit='exit'
             style ={{
                 marginTop:'20vh',
-                display: 'flex',
-                justifyContent: 'center'
+                // display: 'flex',
+                justifyContent: 'center',
+                alignItems:'center'
             }}
         >
                 <Grid 
@@ -115,6 +119,8 @@ export const SignForm = ({isSignUp,title}) => {
                         >{title}</h3>
                     <Grid />
 
+                    {isSignUp?(
+
                     <TextField 
                         label="Name" 
                         id="name" 
@@ -125,7 +131,7 @@ export const SignForm = ({isSignUp,title}) => {
                         type="name"  
                         value={userInfo.name}
                         onChange={e => handleInput(e)}
-                    />
+                    />):null}
 
                     <TextField 
                         label="Email" 
@@ -203,7 +209,21 @@ export const SignForm = ({isSignUp,title}) => {
                         to={'/'}
                         onClick={(e)=>handleSubmit(e)}
                     >{title}</Button>
+
                 </Grid>
+
+
+                <Button
+                        variant = 'contained'
+                        style={{
+                            marginTop:'90px',
+                            backgroundColor:'#69C0FB',
+                            color:'white',
+                            marginLeft:'42vw'
+                        }}
+                        onClick={(e)=>setIsSignUp(!isSignUp)}
+                    >{isSignUp?"Have an Account":"New Account ?"}
+                </Button>
                 
         </a.div>
     )

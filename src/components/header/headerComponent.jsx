@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion as a } from "framer-motion";
 import {
   AppBar,
@@ -6,11 +6,11 @@ import {
   Typography,
   makeStyles,
   Button,
-  Paper
+  Paper,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-//img
+import { UserContext } from "../../context/userContext";
 
 const headerVariants = {
   animate: {
@@ -28,29 +28,11 @@ const headerVariants = {
   },
 };
 
-const headersData = [
-  {
-    id:0,
-    label: "About",
-    href: "/about",
-  },
-  {
-    id:1,
-    label: "Services",
-    href: "/services",
-  },
-  {
-    id:2,
-    label: "Log In/Out",
-    href: "/log",
-  }
-];
-
 const newStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#EEEEEE",
     position: "relative",
-    borderRadius:'10px',
+    borderRadius: "10px",
     boxShadow: "3px 3px 3px  gray",
     color: "gray",
   },
@@ -65,7 +47,26 @@ const newStyles = makeStyles(() => ({
 }));
 
 export const Header = () => {
+  const { user } = useContext(UserContext);
   const { header, toolbar, menuButton } = newStyles();
+
+  const headersData = [
+    {
+      id: 0,
+      label: "About",
+      href: "/about",
+    },
+    {
+      id: 1,
+      label: "Services",
+      href: "/services",
+    },
+    {
+      id: 2,
+      label: `${user ? "Log Out" : "log In"}`,
+      href: "/log",
+    },
+  ];
 
   return (
     <a.div
@@ -73,32 +74,32 @@ export const Header = () => {
       animate="animate"
       initial="initial"
       transition="transition"
-      style={{paddingTop:'20px', paddingLeft:'20px'}}
+      style={{ paddingTop: "20px", paddingLeft: "20px" }}
     >
-        <AppBar className={header}>
-            <Toolbar className={toolbar}>
-            <Link to="/">
-                <Typography>HEADER</Typography>
-            </Link>
+      <AppBar className={header}>
+        <Toolbar className={toolbar}>
+          <Link to="/">
+            <Typography>HEADER</Typography>
+          </Link>
 
-            <div className={menuButton}>
-                {headersData.map(({ id,label, href }) => {
-                return (
-                    <Button
-                    {...{
-                        key: id,
-                        color: "inherit",
-                        to: href,
-                        component: Link,
-                    }}
-                    >
-                    {label}
-                    </Button>
-                );
-                })}
-            </div>
-            </Toolbar>
-        </AppBar>
+          <div className={menuButton}>
+            {headersData.map(({ id, label, href }) => {
+              return (
+                <Button
+                  {...{
+                    key: id,
+                    color: "inherit",
+                    to: href,
+                    component: Link,
+                  }}
+                >
+                  {label}
+                </Button>
+              );
+            })}
+          </div>
+        </Toolbar>
+      </AppBar>
     </a.div>
   );
 };

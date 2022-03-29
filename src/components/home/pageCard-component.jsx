@@ -3,7 +3,7 @@ import { Grid, Button, Box, Paper, Typography } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
-export const CardComponent = ({ cardText, buttonText, img, to, Children }) => {
+export const CardComponent = ({ cardText, buttonText, img, to }) => {
   return (
     <Grid
       container
